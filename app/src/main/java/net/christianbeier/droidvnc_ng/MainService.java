@@ -152,9 +152,9 @@ public class MainService extends Service {
                     notificationIntent, 0);
 
             Notification notification = new NotificationCompat.Builder(this, getPackageName())
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(R.drawable.ic_notification)
                     .setContentTitle(getString(R.string.app_name))
-                    .setContentText("Doing some work...")
+                    .setContentText("Remote device control started...")
                     .setContentIntent(pendingIntent).build();
 
             startForeground(NOTIFICATION_ID, notification);
@@ -243,7 +243,7 @@ public class MainService extends Service {
             startActivity(writeStorageRequestIntent);
         }
 
-        if(ACTION_START.equals(intent.getAction())) {
+        if(ACTION_START.equals(intent.getAction()) || "android.intent.action.MAIN".equals(intent.getAction())) {
             Log.d(TAG, "onStartCommand: start");
             // Step 1: check input permission
             Intent inputRequestIntent = new Intent(this, InputRequestActivity.class);
